@@ -77,6 +77,19 @@ class Home extends StatelessWidget {
                   Navigator.pushNamed(context, 'header-wave');
                 },
               ),
+              Divider(),
+              ListTile(
+                title: Text('Header Wave Gradient'),
+                leading: Icon(Icons.menu),
+                trailing: Icon(
+                  Icons.keyboard_arrow_right,
+                  color: Colors.blue[300],
+                  size: 25.0,
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, 'header-wave-gradient');
+                },
+              ),
               Divider()
             ],
           ),
