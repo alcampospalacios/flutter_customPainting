@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-class HeaderCurve extends StatelessWidget {
-  const HeaderCurve({Key? key}) : super(key: key);
+class HeaderWave extends StatelessWidget {
+  const HeaderWave({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -10,14 +10,14 @@ class HeaderCurve extends StatelessWidget {
         height: double.infinity,
         width: double.infinity,
         child: CustomPaint(
-          painter: _HeaderCurve(),
+          painter: _HeaderWave(),
         ),
       ),
     );
   }
 }
 
-class _HeaderCurve extends CustomPainter {
+class _HeaderWave extends CustomPainter {
   @override
   void paint(Canvas canvas, Size size) {
     final paint = new Paint();
@@ -28,9 +28,13 @@ class _HeaderCurve extends CustomPainter {
     final path = new Path();
 
     // Drawing
-    path.lineTo(0, size.height * 0.3);
+    path.lineTo(0, size.height * 0.25);
+    path.quadraticBezierTo(size.width * 0.25, size.height * 0.30,
+        size.width * 0.5, size.height * 0.25);
+
     path.quadraticBezierTo(
-        size.width * 0.5, size.height * 0.4, size.width, size.height * 0.3);
+        size.width * 0.75, size.height * 0.20, size.width, size.height * 0.25);
+
     path.lineTo(size.width, 0);
 
     canvas.drawPath(path, paint);
