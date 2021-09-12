@@ -1,3 +1,4 @@
+import 'package:custom_painter/src/routes/routes.dart';
 import 'package:flutter/material.dart';
 
 class MyApp extends StatelessWidget {
@@ -6,9 +7,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Home(),
-    );
+        debugShowCheckedModeBanner: false,
+        initialRoute: '/',
+        routes: getApplicationRoutes());
   }
 }
 
@@ -18,66 +19,41 @@ class Home extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        height: double.infinity,
-        width: double.infinity,
-        child: CustomPaint(
-          painter: _HeaderPeak(),
+        appBar: AppBar(
+          title: Text('Custom painters designs'),
         ),
-      ),
-    );
-  }
-}
-
-class _HeaderTriangular extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = new Paint();
-    paint.color = Colors.blue;
-    paint.style = PaintingStyle.fill;
-    paint.strokeWidth = 5;
-
-    final path = new Path();
-
-    // Drawing
-    // path.moveTo(size.width, size.height);
-    // path.lineTo(size.width, 0);
-    // path.lineTo(0, 0);
-
-    // Inside face
-    path.lineTo(size.width, size.height);
-    path.lineTo(0, size.height);
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
-  }
-}
-
-class _HeaderPeak extends CustomPainter {
-  @override
-  void paint(Canvas canvas, Size size) {
-    final paint = new Paint();
-    paint.color = Colors.blue;
-    paint.style = PaintingStyle.fill;
-    paint.strokeWidth = 5;
-
-    final path = new Path();
-
-    // Drawing
-    path.lineTo(0, size.height * 0.3);
-    path.lineTo(size.width * 0.5, size.height * 0.35);
-    path.lineTo(size.width, size.height * 0.3);
-    path.lineTo(size.width, 0);
-
-    canvas.drawPath(path, paint);
-  }
-
-  @override
-  bool shouldRepaint(covariant CustomPainter oldDelegate) {
-    return true;
+        body: Container(
+          padding: EdgeInsets.only(top: 15),
+          child: ListView(
+            children: [
+              ListTile(
+                title: Text('Header Diagonal'),
+                leading: Icon(Icons.check),
+                trailing: Icon(
+                  Icons.keyboard_arrow_right,
+                  color: Colors.blue[300],
+                  size: 25.0,
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, 'header-diagonal');
+                },
+              ),
+              Divider(),
+              ListTile(
+                title: Text('Header Peak'),
+                leading: Icon(Icons.check),
+                trailing: Icon(
+                  Icons.keyboard_arrow_right,
+                  color: Colors.blue[300],
+                  size: 25.0,
+                ),
+                onTap: () {
+                  Navigator.pushNamed(context, 'header-peak');
+                },
+              ),
+              Divider()
+            ],
+          ),
+        ));
   }
 }
